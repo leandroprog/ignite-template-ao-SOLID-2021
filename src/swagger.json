@@ -1,0 +1,217 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Introdução ao SOLID",
+    "description": "Essa é uma API de cadastro de usuário",
+    "version": "1.0.0",
+    "contact": {
+      "email": "prog.leandro@gmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "User name sample",
+                  "email": "User email"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "User already exist"
+          }
+        }
+      },
+      "get": {
+        "tags": ["User"],
+        "sumary": "List all users",
+        "description": "List all users",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "description": "ID of user to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                  
+                }
+              }
+            }
+          },
+          "400":{
+            "description": "User not permission"
+          }
+        }
+      }
+    },
+    "/users/{user_id}":{
+      "get": {
+        "tags": ["User"],
+        "sumary": "get user",
+        "description": "Get user",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of user to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "header",
+            "description": "ID of user to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "admin": {
+                        "type": "boolean"
+                      },
+                      "created_at":{
+                        "type": "string"
+                      },
+                      "upadated_at":{
+                        "type": "string"
+                      }
+                    }
+                  }
+                  
+                }
+              }
+            }
+          },
+          "400":{
+            "description": "User not permission"
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin":{
+      "patch": {
+        "tags": ["User"],
+        "summary": "Turn user admin",
+        "description": "Turn user admin",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of user to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "admin": {
+                        "type": "boolean"
+                      },
+                      "created_at":{
+                        "type": "string"
+                      },
+                      "upadated_at":{
+                        "type": "string"
+                      }
+                    }
+                  }
+                  
+                }
+              }
+            }
+          },
+          "404":{
+            "description": "User not exist"
+          }
+        }
+      }
+    }
+  }
+}
+
+
